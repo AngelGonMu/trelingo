@@ -1,0 +1,71 @@
+<section class="hero is-fullheight is-dark is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+          <form [formGroup]="registerForm" (ngSubmit)="register()" class="box">
+            <figure class="has-text-centered" routerLink="/">
+              <img src="./assets/img/logo.png" alt="logo">
+            </figure>
+            <div class="field is-bottom-bordered">
+              <p class="control has-icons-left">
+                <input id="name" class="input" type="text" placeholder="{{ 'user.name' | translate}}" formControlName="name">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field is-bottom-bordered">
+              <p class="control has-icons-left">
+                <input id="surname" class="input" type="text" placeholder="{{ 'user.surname' | translate}}" formControlName="surname">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field is-bottom-bordered">
+              <p class="control has-icons-left">
+                <input id="email" class="input" type="email" placeholder="{{ 'user.email' | translate}}" formControlName="email">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field is-bottom-bordered">
+              <p class="control has-icons-left">
+                <input id="password" class="input" type="password" placeholder="{{ 'user.password' | translate}}" formControlName="password">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field is-bottom-bordered">
+              <p class="control has-icons-left">
+                <input id="company" class="input" type="text" placeholder="{{ 'user.company' | translate}}" formControlName="company">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-building"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field is-bottom-bordered">
+              <p class="control has-icons-left">
+                <input id="vat" class="input" type="text" placeholder="{{ 'user.vat' | translate}}" formControlName="vat">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-building"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <button class="button is-fullwidth is-success is-rounded" type="submit" [disabled]="!registerForm.valid">
+                  {{ 'user.register' | translate}}
+                </button>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

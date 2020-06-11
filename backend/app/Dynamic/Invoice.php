@@ -9,7 +9,7 @@ class Invoice extends Model
 {
     use SoftDeletes;
     protected $connection = "dynamic";
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -17,6 +17,16 @@ class Invoice extends Model
      */
     protected $fillable = [
         'code','name','date','due_date','status','currency','tdtype','tax','discount','address_info','contact_info','customer_id','contact_id','order_id',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'address_info' => 'array',
+        'contact_info' => 'array',
     ];
 
     /**

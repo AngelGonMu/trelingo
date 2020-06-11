@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Dynamic\Product;
 
+/**
+ * @group Products
+ *
+ * @authenticated
+ */
 class ProductsController extends Controller
 {
     /**
@@ -19,31 +24,69 @@ class ProductsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * List
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $list = Product::all();
+        $search = $request->get("search");
+        $sort = $request->get("sort");
+        if(strlen($sort)!=0){
+            $start=strrpos($sort,":");
+            $field=substr($sort, 0, $start);
+            $order=substr($sort, $start+1, strlen($sort));
+            if(strrpos($field,".")){
+                $field="contact_info";
+            }
+        } else {
+            $field="created_at";
+            $order="asc";
+        }
+        if(strlen($search)!=0){
+            if($request->type) {
+                $list = Product::where('code', 'like', '%'.$search.'%')
+                    ->orWhere('name', 'like', '%'.$search.'%')
+                    ->orWhere('price_unit', 'like', '%'.$search.'%')
+                    ->orWhere('category', 'like', '%'.$search.'%')
+                    ->orWhere('subcategory', 'like', '%'.$search.'%')
+                    ->where('type', $request->type)
+                    ->orderBy($field,$order)
+                    ->get();
+            } else {
+                $list = Product::where('code', 'like', '%'.$search.'%')
+                    ->orWhere('name', 'like', '%'.$search.'%')
+                    ->orWhere('price_unit', 'like', '%'.$search.'%')
+                    ->orWhere('category', 'like', '%'.$search.'%')
+                    ->orWhere('subcategory', 'like', '%'.$search.'%')
+                    ->orderBy($field,$order)
+                    ->get();
+            }
+        } else {
+            if($request->type) {
+                $list = Product::where('type', $request->type)->orderBy($field,$order)->get();
+            } else {
+                $list = Product::all();
+            }
+        }
         return response()->json(["results"=>$list]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create new
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $json = json_decode($request->json);
-        $item = Product::create($json->all());
+        $item = Product::create($request->all());
         return response()->json(["result"=>$item]);
     }
 
     /**
-     * Display the specified resource.
+     * Get
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -51,11 +94,13 @@ class ProductsController extends Controller
     public function show($id)
     {
         $item = Product::find($id);
+        $item["characteristics"]=$item->characteristics()->get();
+        $item["stock"]=$item->stock()->get();
         return response()->json(["result"=>$item]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -63,14 +108,13 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $json = json_decode($request->json);
         $item = Product::find($id);
-        $item->update($json->all());
-        return response()->json(["result"=>$item]);
+        $item->update($request->all());
+        return show($id);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

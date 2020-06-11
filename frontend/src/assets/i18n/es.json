@@ -1,0 +1,246 @@
+{
+	"alerts": {
+		"deleterecord": "¿Estás seguro de que deseas eliminar este registro?",
+		"recnotfound": "Registro no encontrado",
+		"recsnotfound": "Registros no encontrados"
+	},
+	"buttons": {
+		"accept": "Aceptar",
+		"cancel": "Cancelar",
+		"savechanges": "Guardar cambios",
+    "newrecord": "Nuevo registro",
+    "deleterecord": "Eliminar registro",
+    "savepdf": "Guardar PDF",
+    "search": "Buscar"
+	},
+  "dashboard": {
+    "customers": "Clientes activos",
+    "quotes": "Presupuestos abiertos",
+    "invoices": "Ventas",
+    "todos": "Tareas para hoy",
+    "products": "Top 10 Productos / Servicios",
+    "deals": "Top 10 Presupuestos",
+    "sales": "Top 10 Facturas",
+    "calendar": "Calendario de tareas"
+  },
+	"modules": {
+		"categories": {
+			"value": "Nombre"
+		},
+		"characteristics": {
+			"description": "Descripción",
+			"name": "Nombre"
+		},
+		"contacts": {
+			"contact_info": {
+				"email": "Correo electrónico",
+				"phone1": "Tlf. 1",
+				"phone2": "Tlf. 2",
+				"web": "Página web"
+			},
+			"name": "Nombre",
+			"surname": "Apellidos",
+			"title": "Título",
+			"workplace": "Lugar de trabajo"
+		},
+		"customers": {
+			"address_info": {
+				"address": "Dirección",
+				"city": "Ciudad",
+				"country": "País",
+				"postal_code": "Código postal",
+				"province": "Provincia"
+			},
+			"contact_info": {
+				"email": "Correo electrónico",
+				"phone1": "Tlf. 1",
+				"phone2": "Tlf. 2",
+				"web": "Página web"
+			},
+			"name": "Nombre",
+			"status": "Estado",
+			"type": "Tipo",
+			"vat": "VAT"
+		},
+		"invoices": {
+			"address_info": {
+				"address": "Dirección",
+				"city": "Ciudad",
+				"country": "País",
+				"postal_code": "Código postal",
+				"province": "Provincia"
+			},
+			"code": "Código",
+			"contact_info": {
+				"email": "Correo electrónico",
+				"phone1": "Tlf. 1",
+				"phone2": "Tlf. 2",
+				"web": "Página web"
+			},
+			"currency": "Moneda",
+			"date": "Fecha de inicio",
+			"discount": "Descuento",
+			"due_date": "Fecha de vencimiento",
+			"name": "Nombre",
+			"status": "Estado",
+			"tax": "Impuestos %",
+			"tdtype": "Tipo de impuesto / descuento"
+		},
+		"lines": {
+			"description": "Descripción",
+			"discount": "Descuento %",
+			"price_unit": "Precio unitario",
+			"product_id": "Producto / Servicio",
+			"sort": "Orden",
+			"tax": "Impuesto %",
+			"units": "Unidades"
+		},
+		"orders": {
+			"address_info": {
+				"address": "Dirección",
+				"city": "Ciudad",
+				"country": "País",
+				"postal_code": "Código postal",
+				"province": "Provincia"
+			},
+			"code": "Código",
+			"contact_info": {
+				"email": "Correo electrónico",
+				"phone1": "Tlf. 1",
+				"phone2": "Tlf. 2",
+				"web": "Página web"
+			},
+			"currency": "Moneda",
+			"date": "Fecha de inicio",
+			"discount": "Descuento",
+			"due_date": "Fecha de vencimiento",
+			"name": "Nombre",
+			"status": "Estado",
+			"tax": "Impuestos %",
+			"tdtype": "Tipo de impuesto / descuento"
+		},
+		"payments": {
+			"date": "Fecha",
+			"description": "Descripción",
+			"due_date": "Fecha de vencimiento",
+			"quantity": "Cantidad"
+    },
+		"preferences": {
+			"address_info": {
+				"address": "Dirección",
+				"city": "Ciudad",
+				"country": "País",
+				"postal_code": "Código postal",
+				"province": "Provincia"
+			},
+			"contact_info": {
+				"email": "Correo electrónico",
+				"phone1": "Tlf. 1",
+				"phone2": "Tlf. 2",
+				"web": "Página web"
+			},
+			"company_name": "Empresa",
+			"custom_header": "Cabecera",
+			"custom_footer": "Pie de página",
+			"vat": "VAT"
+		},
+		"products": {
+			"category": "Categoría",
+			"code": "Código",
+			"description": "Descripción",
+			"name": "Nombre",
+			"price_unit": "Precio unitario",
+			"subcategory": "Subcategoría",
+			"unit": "Unidad"
+		},
+		"quotes": {
+			"address_info": {
+				"address": "Dirección",
+				"city": "Ciudad",
+				"country": "País",
+				"postal_code": "Código postal",
+				"province": "Provincia"
+			},
+			"code": "Código",
+			"contact_info": {
+				"email": "Correo electrónico",
+				"phone1": "Tlf. 1",
+				"phone2": "Tlf. 2",
+				"web": "Página web"
+			},
+			"currency": "Moneda",
+			"date": "Fecha de inicio",
+			"discount": "Descuento",
+			"due_date": "Fecha de vencimiento",
+			"name": "Nombre",
+			"status": "Estado",
+			"tax": "Impuestos %",
+			"tdtype": "Tipo de impuesto / descuento"
+		},
+		"services": {
+			"category": "Categoría",
+			"code": "Código",
+			"description": "Descripción",
+			"name": "Nombre",
+			"price_unit": "Precio unitario",
+			"subcategory": "Subcategoría",
+			"unit": "Unidad"
+		},
+		"stock": {
+			"date": "Fecha",
+			"type": "Tipo",
+			"units": "Unidades"
+		},
+		"todos": {
+			"date": "Fecha",
+			"description": "Descripción",
+			"due_date": "Fecha de vencimiento",
+			"type": "Tipo"
+		}
+	},
+	"navigation": {
+		"categories": "Categorías",
+		"characteristics": "Caracteristicas",
+		"contacts": "Contactos",
+		"customers": "Clientes",
+		"entities": "Entidades",
+		"home": "Inicio",
+		"invoices": "Facturas",
+		"lines": "Líneas",
+		"orders": "Ordenes",
+		"payments": "Pagos",
+		"preferences": "Preferencias",
+		"production": "Producción",
+		"products": "Productos",
+		"quotes": "Presupuestos",
+		"sales": "Ventas",
+		"services": "Servicios",
+		"stock": "Stock",
+		"todos": "Seguimiento",
+		"users": "Usuarios",
+		"vl": "Listas de valores",
+		"documents": "Documentos"
+	},
+	"user": {
+		"company": "Empresa",
+		"email": "Correo Electrónico",
+		"login": "Iniciar Sesión",
+		"loginerror": "Usuario o contraseña incorrectos. Por favor, intentelo de nuevo.",
+		"logout": "Cerrar Sesión",
+		"profile": "Perfil",
+		"name": "Nombre",
+		"password": "Contraseña",
+		"surname": "Apellidos",
+		"environment": "Entorno",
+		"vat": "VAT",
+		"noaccount": "¿No tienes una cuenta?",
+		"continue": "Continuar",
+		"register": "Registrate"
+  },
+  "info": {
+    "docs": "Docs",
+    "pricing": "Precios",
+    "testimonials": "Testimonios",
+    "contactus": "Contactanos"
+  }
+}

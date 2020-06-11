@@ -1,0 +1,51 @@
+<aside id="navbarNavigation" class="menu">
+  <div class="has-background-dark has-text-light">
+      <div class="has-text-centered">
+        <img src="./assets/img/user.png" class="has-margin" style="height: 40px;">
+      </div>
+      <div *ngIf="user" class="is-size-7 has-text-centered">
+        <p class="has-text-weight-bold">{{user.name +" "+ user.surname}}</p>
+        <p>{{user.role}} ({{user.environment | uppercase}})</p>
+        <p><a class="button is-small is-dark is-inverted is-rounded" (click)="logout()">
+          {{ 'user.logout' | translate }}
+        </a></p>
+      </div>
+  </div>
+  <div>
+    <img src="./assets/img/leftbarbg.svg">
+  </div>
+  <ul class="menu-list">
+    <li><a routerLink="/ui/home" routerLinkActive="has-background-primary is-radiusless has-text-white"><i class="fas fa-home"></i> {{ 'navigation.home' | translate }}</a></li>
+  </ul>
+  <ul class="menu-list">
+    <li>
+      <a routerLink="/ui/entities" routerLinkActive="has-background-primary is-radiusless has-text-white"><i class="fas fa-book"></i> {{ 'navigation.entities' | translate }}</a>
+      <ul>
+        <li><a routerLink="/ui/entities/customers" routerLinkActive="has-text-primary"><i class="fas fa-user-tie"></i> {{ 'navigation.customers' | translate }}</a></li>
+        <li><a routerLink="/ui/entities/contacts" routerLinkActive="has-text-primary"><i class="fas fa-id-badge"></i> {{ 'navigation.contacts' | translate }}</a></li>
+      </ul>
+    </li>
+  </ul>
+  <ul class="menu-list">
+    <li>
+      <a routerLink="/ui/production" routerLinkActive="has-background-primary is-radiusless has-text-white"><i class="fas fa-warehouse"></i> {{ 'navigation.production' | translate }}</a>
+      <ul>
+        <li><a routerLink="/ui/production/products" routerLinkActive="has-text-primary"><i class="fas fa-boxes"></i> {{ 'navigation.products' | translate }}</a></li>
+        <li><a routerLink="/ui/production/services" routerLinkActive="has-text-primary"><i class="fas fa-business-time"></i> {{ 'navigation.services' | translate }}</a></li>
+      </ul>
+    </li>
+  </ul>
+  <ul class="menu-list">
+    <li>
+      <a routerLink="/ui/sales" routerLinkActive="has-background-primary is-radiusless has-text-white"><i class="fas fa-chart-bar"></i> {{ 'navigation.sales' | translate }}</a>
+      <ul>
+        <li><a routerLink="/ui/sales/quotes" routerLinkActive="has-text-primary"><i class="fas fa-file-contract"></i> {{ 'navigation.quotes' | translate }}</a></li>
+        <li><a routerLink="/ui/sales/orders" routerLinkActive="has-text-primary"><i class="fas fa-file-invoice"></i> {{ 'navigation.orders' | translate }}</a></li>
+        <li><a routerLink="/ui/sales/invoices" routerLinkActive="has-text-primary"><i class="fas fa-file-invoice-dollar"></i> {{ 'navigation.invoices' | translate }}</a></li>
+      </ul>
+    </li>
+  </ul>
+  <ul class="menu-list" *ngIf="user.role=='Admin'">
+    <li><a routerLink="/ui/preferences" routerLinkActive="has-background-primary is-radiusless has-text-white"><i class="fas fa-cogs"></i> {{ 'navigation.preferences' | translate }}</a></li>
+  </ul>
+</aside>

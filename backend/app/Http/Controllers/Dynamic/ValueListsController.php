@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Dynamic\ValueList;
 
+/**
+ * @group Value Lists
+ *
+ * @authenticated
+ */
 class ValueListsController extends Controller
 {
     /**
@@ -19,7 +24,9 @@ class ValueListsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * List
+     *
+     * @bodyParam list String required List name. Example: Categories
      *
      * @return \Illuminate\Http\Response
      */
@@ -30,23 +37,22 @@ class ValueListsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create value
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $json = json_decode($request->json);
         if(0){
-            return response()->json(["error"=>"You can not add values on list '$json->list'"]);
+            return response()->json(["error"=>"You can not add values on list '$request->list'"]);
         }
-        $item = ValueList::create($json->all());
+        $item = ValueList::create($request->all());
         return response()->json(["result"=>$item]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update value
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -54,26 +60,25 @@ class ValueListsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $json = json_decode($request->json);
         if(0){
-            return response()->json(["error"=>"You can not edit values on list '$json->list'"]);
+            return response()->json(["error"=>"You can not edit values on list '$request->list'"]);
         }
         $item = ValueList::find($id);
-        $item->update($json->all());
+        $item->update($request->all());
         return response()->json(["result"=>$item]);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete value
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $json = json_decode($request->json);
         if(0){
-            return response()->json(["error"=>"You can not delete values on list '$json->list'"]);
+            return response()->json(["error"=>"You can not delete values on list '$request->list'"]);
         }
         $item = ValueList::find($id);
         $item->delete();

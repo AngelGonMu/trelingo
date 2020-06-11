@@ -1,0 +1,124 @@
+<nav class="navbar is-primary is-left-bordered">
+  <div class="navbar-brand">
+    <a id="navbtnNavigation" role="button" class="navbar-burger burger left" data-target="navbarNavigation">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+
+    <a id="navbtnFunctions" role="button" class="navbar-burger burger" data-target="navbarFunctions">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div id="navbarFunctions" class="navbar-menu is-paddingless">
+    <div class="navbar-start">
+    </div>
+
+    <div class="navbar-end">
+    </div>
+  </div>
+</nav>
+
+<div class="columns is-gapless has-background-white is-left-bordered is-size-7 is-fullheight">
+  <div id="detail" *ngIf="detail" class="column columns">
+    <!-- Detail -->
+    <!-- Form -->
+    <div class="column is-narrow is-right-bordered">
+      <div style="width: 320px;">
+        <div class="buttons is-right is-marginless">
+          <button class="button is-dark" (click)="save()"><i class="fas fa-save"></i>&nbsp;{{ 'buttons.savechanges' | translate }}</button>
+        </div>
+        <div class="field" *ngFor="let dfield of module.detailfields; index as it">
+          <label class="label is-small">{{ 'modules.'+ component +'.'+dfield | translate }}</label>
+          <div class="control">
+            <div [innerHTML]="module.typefields[it] | fieldType:dfield:result.result:component"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Related data -->
+    <div class="column is-paddingless">
+      <!-- Tab links -->
+      <div class="tabs is-toggle is-fullwidth is-radiusless is-small">
+        <ul>
+          <li class="tab-link" *ngFor="let tab of module.tabs; first as isFirst; index as i" [class.is-active]="isFirst" (click)="changeTab(i)">
+            <a class="is-radiusless is-primary">
+              <span>{{ 'navigation.'+tab | translate }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- Tab contents -->
+      <div class="tab-content is-active">
+        <div class="box has-margin has-text-primary">
+          <div class="columns" *ngFor="let itemlist of result.result.list">
+            <div class="column has-text-centered is-one-third">
+              <a class="button is-dark is-fullwidth is-small"><p>{{itemlist.list}}</p></a>
+              <div class="box" style="min-height: 200px;max-height: 200px;">
+                <div class="columns" *ngFor="let item of result.result.vl">
+                  <div class="column has-text-centered has-text-black" *ngIf="item.list==itemlist.list">
+                    {{item.value}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content">
+        <div class="box has-margin has-background-primary">
+          <div class="columns">
+            <div class="column is-1">
+            </div>
+            <div class="column is-2">
+              <label class="label is-small has-text-white">{{'user.name' | translate}}</label>
+            </div>
+            <div class="column is-2">
+              <label class="label is-small has-text-white">{{'user.surname' | translate}}</label>
+            </div>
+            <div class="column is-3">
+              <label class="label is-small has-text-white">{{'user.email' | translate}}</label>
+            </div>
+            <div class="column is-3">
+              <label class="label is-small has-text-white">{{'user.password' | translate}}</label>
+            </div>
+            <div class="column is-1">
+              <label class="label is-small has-text-white">{{'user.environment' | translate}}</label>
+            </div>
+          </div>
+        </div>
+        <div class="box has-margin" *ngFor="let user of result.result.users">
+          <div class="columns">
+            <div class="column is-1 is-bottom-bordered">
+              <span class="icon" (click)="updateRelated('users',user.id)">
+                <i class="fas fa-pen-square fa-2x has-text-warning"></i>
+              </span>
+            </div>
+            <div class="column is-2 is-bottom-bordered">
+              <input type="text" class="input is-small" id="users_name_{{user.id}}" value="{{user.name}}">
+            </div>
+            <div class="column is-2 is-bottom-bordered">
+              <input type="text" class="input is-small" id="users_surname_{{user.id}}" value="{{user.surname}}">
+            </div>
+            <div class="column is-3 is-bottom-bordered">
+              <input type="email" class="input is-small" id="users_email_{{user.id}}" value="{{user.email}}">
+            </div>
+            <div class="column is-3 is-bottom-bordered">
+              <input type="password" class="input is-small" id="users_password_{{user.id}}">
+            </div>
+            <div class="column is-1 is-bottom-bordered">
+              <div class="select">
+                <select id="users_environment_{{user.id}}" value="{{user.environment}}">
+                  <option value="test">Test</option>
+                  <option value="prod">Prod</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

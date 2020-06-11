@@ -10,7 +10,7 @@ class Contact extends Model
     use SoftDeletes;
     protected $connection = "dynamic";
     protected $appends = ["customer"];
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -18,6 +18,15 @@ class Contact extends Model
      */
     protected $fillable = [
         'name','surname','title','workplace','contact_info','customer_id',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'contact_info' => 'array',
     ];
 
     /**

@@ -5,7 +5,14 @@ namespace App\Http\Controllers\Dynamic;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Dynamic\Invoice;
+use App\Dynamic\Preference;
+use PDF;
 
+/**
+ * @group Invoices
+ *
+ * @authenticated
+ */
 class InvoicesController extends Controller
 {
     /**
@@ -19,18 +26,39 @@ class InvoicesController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * List
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $list = Invoice::all();
+        $search = $request->get("search");
+        $sort = $request->get("sort");
+        if(strlen($sort)!=0){
+            $start=strrpos($sort,":");
+            $field=substr($sort, 0, $start);
+            $order=substr($sort, $start+1, strlen($sort));
+        } else {
+            $field="created_at";
+            $order="asc";
+        }
+        if(strlen($search)!=0){
+            $list = Invoice::where('code', 'like', '%'.$search.'%')
+                    ->orWhere('name', 'like', '%'.$search.'%')
+                    ->orWhere('date', 'like', '%'.$search.'%')
+                    ->orWhere('due_date', 'like', '%'.$search.'%')
+                    ->orWhere('status', 'like', '%'.$search.'%')
+                    ->orderBy($field,$order)
+                    ->get();
+        } else {
+            $list = Invoice::orderBy($field,$order)->get();
+        }
         return response()->json(["results"=>$list]);
     }
 
     /**
-     * Display the specified resource.
+     * Get
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -38,11 +66,13 @@ class InvoicesController extends Controller
     public function show($id)
     {
         $item = Invoice::find($id);
+        $item["lines"]=$item->lines()->get();
+        $item["payments"]=$item->payments()->get();
         return response()->json(["result"=>$item]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -50,14 +80,13 @@ class InvoicesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $json = json_decode($request->json);
         $item = Invoice::find($id);
-        $item->update($json->all());
-        return response()->json(["result"=>$item]);
+        $item->update($request->all());
+        return show($id);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -67,5 +96,13 @@ class InvoicesController extends Controller
         $item = Invoice::find($id);
         $item->delete();
         return response()->json(["result"=>"Success?"]);
+    }
+
+    public function savePDF($id){
+        $invoice = Invoice::find($id);
+        $preferences = Preference::find(1);
+        $data = array('invoice' => $invoice, 'preferences' => $preferences);
+        $pdf = PDF::loadView('pdf.invoice', $data);
+        return $pdf->download('invoice.pdf');
     }
 }

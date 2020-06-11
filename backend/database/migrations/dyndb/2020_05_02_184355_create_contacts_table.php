@@ -20,7 +20,7 @@ class CreateContactsTable extends Migration
             $table->string('title', 10)->nullable();
             $table->string('workplace', 255)->nullable();
             $table->json('contact_info')->nullable();
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

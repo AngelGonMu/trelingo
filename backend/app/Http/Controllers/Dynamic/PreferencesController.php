@@ -5,7 +5,13 @@ namespace App\Http\Controllers\Dynamic;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Dynamic\Preference;
+use App\Dynamic\ValueList;
 
+/**
+ * @group Preferences
+ *
+ * @authenticated
+ */
 class PreferencesController extends Controller
 {
     /**
@@ -19,7 +25,9 @@ class PreferencesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Get
+     *
+     * @urlParam preferences required Id of preference
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -27,11 +35,14 @@ class PreferencesController extends Controller
     public function show($id)
     {
         $item = Preference::find($id);
+        $item["users"]=$item->users()->get();
+        $item["list"]=ValueList::distinct('list')->get(['list']);
+        $item["vl"]=ValueList::all();
         return response()->json(["result"=>$item]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -39,9 +50,8 @@ class PreferencesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $json = json_decode($request->json);
         $item = Preference::find($id);
-        $item->update($json->all());
-        return response()->json(["result"=>$item]);
+        $item->update($request->all());
+        return show($id);
     }
 }

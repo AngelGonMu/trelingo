@@ -1,0 +1,406 @@
+<nav class="navbar is-spaced is-bottom-bordered" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" routerLink="/">
+        <figure class="has-text-centered" routerLink="/">
+          <img src="./assets/img/logo.png" alt="logo">
+        </figure>
+      </a>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="{{docsUrl}}" target="_blank">
+          {{'info.docs' | translate}}
+        </a>
+        <a class="navbar-item" href="#pricing">
+          {{'info.pricing' | translate}}
+        </a>
+        <a class="navbar-item" href="#testimonials">
+          {{'info.testimonials' | translate}}
+        </a>
+        <a class="navbar-item" href="#contactus">
+          {{'info.contactus' | translate}}
+        </a>
+        <a class="navbar-item modal-button" data-target="modalFAQ">
+          FAQ
+        </a>
+        <a class="navbar-item modal-button" data-target="modalAL">
+          Aviso Legal
+        </a>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons" *ngIf="!islogged">
+            <a class="button is-primary is-rounded" routerLink="/register">
+              <strong>{{'user.register' | translate}}</strong>
+            </a>
+            <a class="button is-dark is-rounded" routerLink="/login">
+              {{'user.login' | translate}}
+            </a>
+          </div>
+          <div class="buttons" *ngIf="islogged">
+            <a class="button is-dark is-rounded" routerLink="/ui/home">
+              <strong>{{'user.continue' | translate}}</strong>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<main>
+  <div>
+    <div>
+      <section class="section">
+        <div class="container">
+          <h2 class="title has-text-centered">Trelingo</h2>
+          <div class="columns is-vcentered">
+            <div class="column">
+              <h2 class="title is-spaced">¿Cómo empezar?</h2>
+              <p class="subtitle">¡Vamos a conectarte! Hemos diseñado un proceso simple y eficiente para las empresas que migran a Trelingo. Así es como funciona.</p>
+            </div>
+            <div class="column"><video src="./assets/video/video.mp4" controls></video></div>
+          </div>
+          <hr>
+        </div>
+      </section>
+    </div>
+    <div id="pricing" class="has-background-primary">
+      <div class="container">
+        <section class="section">
+          <h3 class="title is-3 has-text-centered has-text-white">{{'info.pricing' | translate}}</h3>
+          <div class="columns">
+            <div class="column"></div>
+            <div class="column">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <h3 class="title is-4">Gratis</h3>
+                  <p class="block"><span class="is-bottom-bordered">&nbsp;&nbsp;Usuarios: 5&nbsp;&nbsp;</span></p>
+                  <p class="block"><span class="is-bottom-bordered">&nbsp;&nbsp;Tiempo: 30 dias&nbsp;&nbsp;</span></p>
+                  <p class="block"><span class="is-bottom-bordered">&nbsp;&nbsp;Datos: Ilimitados&nbsp;&nbsp;</span></p>
+                  <p class="block"><span class="is-bottom-bordered">&nbsp;&nbsp;Exportación: No&nbsp;&nbsp;</span></p>
+                  <h4 class="title is-spaced is-5">0 €</h4>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <h3 class="title is-4">Estándar</h3>
+                  <p class="block"><span class="is-bottom-bordered">&nbsp;&nbsp;Usuarios: 25&nbsp;&nbsp;</span></p>
+                  <p class="block"><span class="is-bottom-bordered">&nbsp;&nbsp;Tiempo: Ilimitado&nbsp;&nbsp;</span></p>
+                  <p class="block"><span class="is-bottom-bordered">&nbsp;&nbsp;Datos: Ilimitados&nbsp;&nbsp;</span></p>
+                  <p class="block"><span class="is-bottom-bordered">&nbsp;&nbsp;Exportación: Limitada&nbsp;&nbsp;</span></p>
+                  <h4 class="title is-spaced is-5">10 €/mes</h4>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="card">
+                <div class="card-content has-text-centered">
+                  <h3 class="title is-4">Pro</h3>
+                  <p class="block"><span class="is-bottom-bordered">&nbsp;&nbsp;Usuarios: 100&nbsp;&nbsp;</span></p>
+                  <p class="block"><span class="is-bottom-bordered">&nbsp;&nbsp;Tiempo: Ilimitado&nbsp;&nbsp;</span></p>
+                  <p class="block"><span class="is-bottom-bordered">&nbsp;&nbsp;Datos: Ilimitados&nbsp;&nbsp;</span></p>
+                  <p class="block"><span class="is-bottom-bordered">&nbsp;&nbsp;Exportación: Ilimitada&nbsp;&nbsp;</span></p>
+                  <h4 class="title is-spaced is-5">30 €/mes</h4>
+                </div>
+              </div>
+            </div>
+            <div class="column"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div id="testimonials" class="has-background-white">
+      <div class="container">
+        <section class="section">
+          <h3 class="title is-3 has-text-centered">{{'info.testimonials' | translate}}</h3>
+        <div class="columns">
+          <div class="column">
+            <article class="message is-primary">
+              <div class="message-body">
+                <span class="is-italic">"Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."</span>
+                <hr>
+                <div class="has-text-right"><i class="fas fa-quote-right"></i> Tomas P., password: 0133</div>
+              </div>
+            </article>
+          </div>
+          <div class="column">
+            <article class="message is-primary">
+              <div class="message-body">
+                <span class="is-italic">"Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem."</span>
+                <hr>
+                <div class="has-text-right"><i class="fas fa-quote-right"></i> Esteban R., tenía un IronMac</div>
+              </div>
+            </article>
+          </div>
+          <div class="column">
+            <article class="message is-primary">
+              <div class="message-body">
+                <span class="is-italic">"At vero eos et accusamus et ducimus qui blanditiis praesentium voluptatum deleniti et quas molestias excepturi sint occaecati cupiditate non provident."</span>
+                <hr>
+                <div class="has-text-right"><i class="fas fa-quote-right"></i> Andrés T., Examenes tipo test</div>
+              </div>
+            </article>
+          </div>
+          <div class="column">
+            <article class="message is-primary">
+              <div class="message-body">
+                <span class="is-italic">"Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem."</span>
+                <hr>
+                <div class="has-text-right"><i class="fas fa-quote-right"></i> Victor S., Comentar el código</div>
+              </div>
+            </article>
+          </div>
+        </div>
+        </section>
+      </div>
+    </div>
+    <hr class="hr" style="margin-bottom: 0;">
+    <div id="contactus" class="box container">
+      <h3 class="title is-3 has-text-centered">{{'info.contactus' | translate}}</h3>
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">De</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded has-icons-left">
+              <input class="input" type="text" placeholder="Nombre">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control is-expanded has-icons-left">
+              <input class="input is-success" type="email" placeholder="Correo electrónico">
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Asunto</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <input class="input is-danger" type="text" placeholder="Asunto">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Mensaje</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <textarea class="textarea" placeholder="Explica como podemos ayudarte"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <!-- Left empty for spacing -->
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <button class="button is-primary is-rounded"><i class="fas fa-paper-plane"></i>&nbsp;Enviar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hr" style="margin-bottom: 0;">
+  </div>
+</main>
+<footer class="footer has-background-dark">
+  <div class="content">
+    <p class="subtitle has-text-centered is-4 has-text-white">© Trelingo 2020</p>
+  </div>
+</footer>
+<div class="modal" id="modalFAQ">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">FAQ</p>
+      <button class="delete" aria-label="close" class="modal-close" data-target="modalFAQ"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="block">
+        <div class="card block">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <h3 class="title is-4">How is a decentralized network different from the traditional web?</h3>
+                <p>Decentralization is a key aspect of PiperNet. Traditionally, to access data on a website, you needed to connect to a single server containing that data. This method of storing data makes it easy for third parties to get access to it, corrupt it or even delete it. In PiperNet it is securely stored on multiple devices in the network, which makes it harder to hack and interfere with your data.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card block">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <h3 class="title is-4">Why shouldn't I just store my data on a Hooli Box?</h3>
+                <p>That's just the thing - if you store your data in a single place, like Gavin Belsons' poorly-made server box, your data will very susceptible to hacking. Whereas on PiperNet, your data is safe with many copies to back it up from.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card block">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <h3 class="title is-4">What makes PiperNet so safe?</h3>
+                <p>Our proprietary middle-out compression algorithm allows data to flow so fast that it can't be hacked! But, in all seriousness, the algorithm helps but it's the public, immutable ledger that makes it secure. This enables PiperNet users to exchange data without risk of it being intercepted by third parties.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card block">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <h3 class="title is-4">How long does it take to get a company up and running on PiperNet?</h3>
+                <p>Access to the public network is granted within a day, but moving all your data and integrating your existing software depends on how big your company is. Startups can expect to be fully online within a week, enterprises can take up to a month due to large reliance on legacy systems and huge datasets.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<div class="modal" id="modalAL">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Aviso Legal</p>
+      <button class="delete" aria-label="close" class="modal-close" data-target="modalAL"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="block">
+        <p>
+          En este espacio, el USUARIO, podrá encontrar toda la información relativa a los términos y condiciones legales que definen las relaciones entre los usuarios y nosotros como responsables de esta web. Como usuario, es importante que conozcas estos términos antes de continuar tu navegación.
+        Trelingo.Como responsable de esta web, asume el compromiso de procesar la información de nuestros usuarios y clientes con plenas garantías y cumplir con los requisitos nacionales y europeos que regulan la recopilación y uso de los datos personales de nuestros usuarios.
+        Esta web, por tanto, cumple rigurosamente con el RGPD (REGLAMENTO (UE) 2016/679 de protección de datos) y  la LSSI-CE la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico.
+        </p>
+        <hr>
+        <h3 class="title is-4">CONDICIONES GENERALES DE USO</h3>
+        <p>Las presentes Condiciones Generales regulan el uso (incluyendo el mero acceso) de las páginas de la web, integrantes del sitio web de  https://trelingo.com incluidos los contenidos y servicios puestos a disposición en ellas. Toda persona que acceda a la web, https://trelingo.com (“Usuario”) acepta someterse a las Condiciones Generales vigentes en cada momento del portal https://trelingo.com.</p>
+        <hr>
+        <h3 class="title is-4">COMPROMISOS Y OBLIGACIONES DE LOS USUARIOS</h3>
+        <p>
+          El Usuario queda informado, y acepta, que el acceso a la presente web no supone, en modo alguno, el inicio de una relación comercial con https://trelingo.com. De esta forma, el usuario se compromete a utilizar el sitio Web, sus servicios y contenidos sin contravenir la legislación vigente, la buena fe y el orden público.<br>
+        Queda prohibido el uso de la web, con fines ilícitos o lesivos, o que, de cualquier forma, puedan causar perjuicio o impedir el normal funcionamiento del sitio web. Respecto de los contenidos de esta web, se prohíbe:Su reproducción, distribución o modificación, total o parcial, a menos que se cuente con la autorización de sus legítimos titulares;Cualquier vulneración de los derechos del prestador o de los legítimos titulares;Su utilización para fines comerciales o publicitarios.<br>
+        <br>
+        En la utilización de la web, https://trelingo.com, el Usuario se compromete a no llevar a cabo ninguna conducta que pudiera dañar la imagen, los intereses y los derechos de https://trelingo.com o de terceros o que pudiera dañar, inutilizar o sobrecargar el portal (indicar dominio)  o que impidiera, de cualquier forma, la normal utilización de la web.
+        No obstante, el Usuario debe ser consciente de que las medidas de seguridad de los sistemas informáticos en Internet no son enteramente fiables y que, por tanto https://trelingo.com  no puede garantizar la inexistencia de virus u otros elementos que puedan producir alteraciones en los sistemas informáticos (software y hardware) del Usuario o en sus documentos electrónicos y ficheros contenidos en los mismos.
+        </p>
+        <hr>
+        <h3 class="title is-4">MEDIDAS DE SEGURIDAD</h3>
+        <p>
+          Los datos personales comunicados por el usuario a https://trelingo.com pueden ser almacenados en bases de datos automatizadas o no, cuya titularidad corresponde en exclusiva a https://trelingo.com, asumiendo ésta todas las medidas de índole técnica, organizativa y de seguridad que garantizan la confidencialidad, integridad y calidad de la información contenida en las mismas de acuerdo con lo establecido en la normativa vigente en protección de datos.<br>
+        La comunicación entre los usuarios y https://trelingo.com utiliza un canal seguro, y los  datos transmitidos son cifrados gracias a protocolos a https, por tanto, garantizamos las mejores condiciones de seguridad para que la confidencialidad de los usuarios esté garantizada.
+        </p>
+        <hr>
+        <h3 class="title is-4">RECLAMACIONES</h3>
+        <p>https://trelingo.com informa que existen hojas de reclamación a disposición de usuarios y clientes.
+        El Usuario podrá realizar reclamaciones solicitando su hoja de reclamación o remitiendo un correo electrónico a <a href="mailto:info@trelingo.com" >info@trelingo.com</a> indicando su nombre y apellidos, el servicio y/o producto adquirido y exponiendo los motivos de su reclamación.<br><br>
+        El usuario/comprador podrá notificarnos la reclamación, bien a través de correo electrónico a: <a href="mailto:info@trelingo.com" >info@trelingo.com</a>, si lo desea adjuntando el siguiente formulario de reclamación:
+        El servicio/producto:
+        Adquirido el día:
+        Nombre del usuario:
+        Domicilio del usuario:
+        Firma del usuario (solo si se presenta en papel):
+        Fecha:
+        Motivo de la reclamación:
+        </p>
+        <hr>
+        <h3 class="title is-4">PLATAFORMA DE RESOLUCIÓN DE CONFLICTOS</h3>
+        <p>Por si puede ser de tu interés, para someter tus reclamaciones puedes utilizar también la plataforma de resolución de litigios que facilita la Comisión Europea y que se encuentra disponible en el siguiente enlace: <a href="http://ec.europa.eu/consumers/odr/" rel="no-follow">http://ec.europa.eu/consumers/odr/</a></p>
+        <hr>
+        <h3 class="title is-4">DERECHOS DE PROPIEDAD INTELECTUAL E INDUSTRIAL</h3>
+        <p>En virtud de lo dispuesto en los artículos 8 y 32.1, párrafo segundo, de la Ley de Propiedad Intelectual, quedan expresamente prohibidas la reproducción, la distribución y la comunicación pública, incluida su modalidad de puesta a disposición, de la totalidad o parte de los contenidos de esta página web, con fines comerciales, en cualquier soporte y por cualquier medio técnico, sin la autorización de https://trelingo.com. El usuario se compromete a respetar los derechos de Propiedad Intelectual e Industrial titularidad de https://trelingo.com.<br>
+        El usuario conoce y acepta que la totalidad del sitio web, conteniendo sin carácter exhaustivo el texto, software, contenidos (incluyendo estructura, selección, ordenación y presentación de los mismos) podcast, fotografías, material audiovisual y gráficos, está protegida por marcas, derechos de autor y otros derechos legítimos, de acuerdo con los tratados internacionales en los que España es parte y otros derechos de propiedad y leyes de España.
+        En el caso de que un usuario o un tercero consideren que se ha producido una violación de sus legítimos derechos de propiedad intelectual por la introducción de un determinado contenido en la web,  deberá notificar dicha circunstancia a  https://trelingo.com  indicando:<br>
+        </p>
+        <ul>
+          <li>
+            Datos personales del interesado titular de los derechos presuntamente infringidos, o indicar la representación con la que actúa en caso de que la reclamación la presente un tercero distinto del interesado.
+          </li>
+          <li>
+            Señalar los contenidos protegidos por los derechos de propiedad intelectual y su ubicación en la web, la acreditación de los derechos de propiedad intelectual señalados y declaración expresa en la que el interesado se responsabiliza de la veracidad de las informaciones facilitadas en la notificación
+          </li>
+        </ul>
+        <hr>
+        <h3 class="title is-4">ENLACES EXTERNOS</h3>
+        <p>Las páginas de la web https://trelingo.com, podría proporcionar enlaces a otros sitios web propios y contenidos que son propiedad de terceros.
+        El único objeto de los enlaces es proporcionar al Usuario la posibilidad de acceder a dichos enlaces.
+        https://trelingo.com  no se responsabiliza en ningún caso de los resultados que puedan derivarse al Usuario por acceso a dichos enlaces.<br>
+        Asimismo, el usuario encontrará dentro de este sitio, páginas, promociones, programas de afiliados que acceden a los hábitos de navegación de los usuarios para establecer perfiles. Esta información siempre es anónima y no se identifica al usuario.<br><br>
+        La Información que se proporcione en estos Sitios patrocinado o enlaces de afiliados está sujeta a las políticas de privacidad que se utilicen en dichos Sitios y no estará sujeta a esta política de privacidad. Por lo que recomendamos ampliamente a los Usuarios a revisar detalladamente las políticas de privacidad de los enlaces de afiliado.<br>
+        El Usuario que se proponga establecer cualquier dispositivo técnico de enlace desde su sitio web al portal https://trelingo.com deberá obtener la autorización previa y escrita de https://trelingo.com El establecimiento del enlace no implica en ningún caso la existencia de relaciones entre https://trelingo.com y el propietario del sitio en el que se establezca el enlace, ni la aceptación o aprobación por parte de  https://trelingo.com de sus contenidos o servicios
+        </p>
+        <hr>
+        <h3 class="title is-4">POLÍTICA DE COMENTARIOS</h3>
+        <p>En nuestra web y se permiten realizar comentarios para enriquecer los contenidos y realizar consultas.
+        No se admitirán comentarios que no estén relacionados con la temática de esta web, que incluyan difamaciones, agravios, insultos, ataques personales o faltas de respeto en general hacia el autor o hacia otros miembros.
+        También serán suprimidos los comentarios que contengan información que sea obviamente engañosa o falsa, así como los comentarios que contengan información personal, como, por ejemplo, domicilios privado o teléfonos y que vulneren nuestra política de protección de datos.<br>
+        Se desestimará, igualmente, aquellos comentarios creados sólo con fines promocionales de una web, persona o colectivo y todo lo que pueda ser considerado spam en general.<br>
+        No se permiten comentarios anónimos, así como aquellos realizados por una misma persona con distintos apodos. No se considerarán tampoco aquellos comentarios que intenten forzar un debate o una toma de postura por otro usuario.
+        </p>
+        <hr>
+        <h3 class="title is-4">EXCLUSIÓN DE GARANTÍAS Y  RESPONSABILIDAD</h3>
+        <p>El Prestador no otorga ninguna garantía ni se hace responsable, en ningún caso, de los daños y perjuicios de cualquier naturaleza que pudieran traer causa de:</p>
+        <ul>
+          <li>
+            La falta de disponibilidad, mantenimiento y efectivo funcionamiento de la web, o de sus servicios y contenidos;
+          </li>
+            <li>
+             La existencia de virus, programas maliciosos o lesivos en los contenidos;
+          </li>
+            <li>
+            El uso ilícito, negligente, fraudulento o contrario a este Aviso Legal;
+          </li>
+            <li>
+            La falta de licitud, calidad, fiabilidad, utilidad y disponibilidad de los servicios prestados por terceros y puestos a disposición de los usuarios en el sitio web.
+          </li>
+            <li>
+            El prestador no se hace responsable bajo ningún concepto de los daños que pudieran dimanar del uso ilegal o indebido de la presente página web.
+          </li>
+        </ul>
+        <p></p>
+        <hr>
+        <h3 class="title is-4">LEY APLICABLE Y JURISDICCIÓN</h3>
+        <p>Con carácter general las relaciones entre https://trelingo.com con los Usuarios de sus servicios telemáticos, presentes en esta web se encuentran sometidas a la legislación y jurisdicción españolas y a los tribunales.</p>
+        <h3 class="title is-4">CONTACTO</h3>
+        <p>En caso de que cualquier Usuario tuviese alguna duda acerca de estas Condiciones legales o cualquier comentario sobre el portal https://trelingo.com, por favor diríjase a <a href="mailto:info@trelingo.com" >info@trelingo.com</a></p>
+        <p>
+        De parte del equipo que formamos Trelingo te agradecemos el tiempo dedicado en leer este Aviso Legal
+        </p>
+      </div>
+    </section>
+  </div>
+</div>

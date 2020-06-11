@@ -1,0 +1,171 @@
+<nav class="navbar is-primary is-left-bordered">
+  <div class="navbar-brand">
+    <a id="navbtnNavigation" role="button" class="navbar-burger burger left" data-target="navbarNavigation">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+
+    <a id="navbtnFunctions" role="button" class="navbar-burger burger" data-target="navbarFunctions">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div id="navbarFunctions" class="navbar-menu is-paddingless">
+    <div class="navbar-start">
+      <a class="navbar-item" (click)="new()"><i class="fas fa-plus-square"></i>&nbsp;{{ 'buttons.newrecord' | translate }}</a>
+      <a class="navbar-item" (click)="delete(id)" *ngIf="detail"><i class="fas fa-minus-square"></i>&nbsp;{{ 'buttons.deleterecord' | translate }}</a>
+      <a class="navbar-item" (click)="savepdf()" *ngIf="detail"><i class="fas fa-file-pdf"></i>&nbsp;{{ 'buttons.savepdf' | translate }}</a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item" *ngIf="!detail">
+        <div class="field">
+          <div class="control has-icons-left">
+            <input id="search" class="input is-small" type="search" placeholder="{{ 'buttons.search' | translate }}" (keyup.enter)="search()">
+            <span class="icon is-left">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="columns is-gapless has-background-white is-left-bordered is-size-7 is-fullheight">
+  <div id="list" class="column" *ngIf="!detail">
+      <!-- List -->
+      <div class="box has-margin has-text-primary">
+        <div class="columns columns is-mobile is-multiline is-centered is-gapless">
+          <!-- Options column -->
+          <div class="column is-1 has-no-y-padding">
+            <span class="">&nbsp;</span>
+            <div class="row" *ngFor="let item of result.results">
+              <div class="columns">
+                <div class="column">
+                  <span class="icon" routerLink="/ui/{{module.parent}}/{{component}}/{{item.id}}">
+                    <i class="fas fa-caret-square-right fa-2x has-text-primary"></i>
+                  </span>
+                  <span class="icon" (click)="delete(item.id)">
+                    <i class="fas fa-minus-square fa-2x has-text-danger"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Data columns -->
+          <div class="column has-no-y-padding" *ngFor="let lfield of module.listfields">
+            <a (click)="sort(lfield)">{{ 'modules.'+ component +'.'+lfield | translate }}&nbsp;<i class="fas fa-sort"></i></a>
+            <div class="row has-text-black" *ngFor="let item of result.results">
+              <div class="columns">
+                <div class="column"><span class="">{{ lfield | mdvalue:item }}</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div id="detail" *ngIf="detail" class="column columns">
+    <!-- Detail -->
+    <!-- Form -->
+    <div class="column is-narrow is-right-bordered">
+      <div style="width: 320px;">
+        <div class="buttons is-right is-marginless">
+          <button class="button is-dark" (click)="save()"><i class="fas fa-save"></i>&nbsp;{{ 'buttons.savechanges' | translate }}</button>
+        </div>
+        <div class="field" *ngFor="let dfield of module.detailfields; index as it">
+          <label class="label is-small">{{ 'modules.'+ component +'.'+dfield | translate }}</label>
+          <div class="control">
+            <div *ngIf="isSelectElement(module.typefields[it])" class="select is-small has-text-black is-fullwidth">
+              <select id="{{component}}_{{dfield}}_{{result.result.id}}" [value]="result.result[dfield]">
+                <option value="">-- Select an option --</option>
+                <option *ngFor="let opt of lists[getListName(module.typefields[it])].results" value="{{opt.value}}">{{opt.value}}</option>
+              </select>
+            </div>
+            <div *ngIf="!isSelectElement(module.typefields[it])" [innerHTML]="module.typefields[it] | fieldType:dfield:result.result:component"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Related data -->
+    <div class="column is-paddingless">
+      <!-- Tab links -->
+      <div class="tabs is-toggle is-fullwidth is-radiusless is-small">
+        <ul>
+          <li class="tab-link" *ngFor="let tab of module.tabs; first as isFirst; index as i" [class.is-active]="isFirst" (click)="changeTab(i)">
+            <a class="is-radiusless is-primary">
+              <span>{{ 'navigation.'+tab | translate }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- Tab contents -->
+      <div class="tab-content" *ngFor="let tab of module.tabs; first as isFirst" [class.is-active]="isFirst">
+        <!-- Box when there aren't records -->
+        <div class="box has-margin has-text-danger" *ngIf="result.result[tab]==0">
+          <span class="icon" (click)="newRelated(tab)">
+            <i class="fas fa-plus-square fa-2x has-text-success"></i>
+          </span>
+          <div class="columns is-mobile is-multiline is-centered is-gapless">
+            <div class="column">{{ 'alerts.recsnotfound' | translate }}</div>
+          </div>
+        </div>
+        <!-- Box when there are records -->
+        <div class="box has-margin has-text-primary" *ngIf="result.result[tab].length>0">
+          <span class="icon" (click)="newRelated(tab)">
+            <i class="fas fa-plus-square fa-2x has-text-success"></i>
+          </span>
+          <div class="column columns is-mobile is-multiline is-centered is-gapless">
+            <!-- Options column (if from another module) -->
+            <div class="column is-1 has-no-y-padding">
+              <span class="">&nbsp;</span>
+              <div class="row" *ngFor="let itemt of result.result[tab]">
+                <div class="columns">
+                  <div class="column">
+                    <span class="icon" *ngIf="modules[tab].parent" routerLink="/ui/{{modules[tab].parent}}/{{tab}}/{{itemt.id}}">
+                      <i class="fas fa-caret-square-right fa-2x has-text-primary"></i>
+                    </span>
+                    <span class="icon" *ngIf="!modules[tab].parent" (click)="updateRelated(tab,itemt.id)">
+                      <i class="fas fa-pen-square fa-2x has-text-warning"></i>
+                    </span>
+                    <span class="icon" (click)="deleteRelated(tab,itemt.id)">
+                      <i class="fas fa-minus-square fa-2x has-text-danger"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Related data columns -->
+            <div class="column has-no-y-padding" *ngFor="let tfield of modules[tab].listfields; index as itt">
+              <span class="">{{ 'modules.'+tab+'.'+tfield | translate }}</span>
+              <div class="row has-text-black" *ngFor="let itemp of result.result[tab]">
+                <div class="columns">
+                  <div class="column">
+                    <!-- Non editable value if comes from another module -->
+                    <span class="" *ngIf="modules[tab].parent">{{ tfield | mdvalue:itemp }}</span>
+                    <!-- Editable value -->
+                    <div *ngIf="!modules[tab].parent && isSelectElement(modules[tab].typefields[itt]) && getListName(modules[tab].typefields[itt]) == 'products'" class="select is-small has-text-black is-fullwidth">
+                      <select id="{{tab}}_{{tfield}}_{{itemp.id}}" [value]="itemp.id">
+                        <option value="">-- Select an option --</option>
+                        <option *ngFor="let opti of lists[getListName(modules[tab].typefields[itt])].results" value="{{opti.id}}">{{opti.name}}</option>
+                      </select>
+                    </div>
+                    <div *ngIf="!modules[tab].parent && isSelectElement(modules[tab].typefields[itt]) && getListName(modules[tab].typefields[itt]) != 'products'" class="select is-small has-text-black is-fullwidth">
+                      <select id="{{tab}}_{{tfield}}_{{itemp.id}}" [value]="itemp[tfield]">
+                        <option value="">-- Select an option --</option>
+                        <option *ngFor="let optt of lists[getListName(modules[tab].typefields[itt])].results" value="{{optt.value}}">{{optt.value}}</option>
+                      </select>
+                    </div>
+                    <div *ngIf="!modules[tab].parent && !isSelectElement(modules[tab].typefields[itt])" [innerHTML]="modules[tab].typefields[itt] | fieldType:tfield:itemp:tab"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

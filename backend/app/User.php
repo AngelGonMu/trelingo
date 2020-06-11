@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+    protected $connection = "mysql";
 
     /**
      * The attributes that are mass assignable.

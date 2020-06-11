@@ -29,8 +29,8 @@ class DynamicDatabaseConnection
 
             return $next($request);
         } else {
-            return response()->json(["error"=>"Non authorized"]);
+            return response()->json(["error"=>"Non authorized"],401);
         }
-        
+
     }
 }

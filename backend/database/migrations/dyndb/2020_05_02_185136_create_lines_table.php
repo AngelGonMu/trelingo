@@ -22,7 +22,7 @@ class CreateLinesTable extends Migration
             $table->double('tax', 15, 8)->nullable();
             $table->double('discount', 15, 8)->nullable();
             $table->morphs('lineable');
-            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('product_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

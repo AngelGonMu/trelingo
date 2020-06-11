@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Dynamic\Customer;
 
+/**
+ * @group Customers
+ *
+ * @authenticated
+ */
 class CustomersController extends Controller
 {
     /**
@@ -19,31 +24,71 @@ class CustomersController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * List
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $list = Customer::all();
+        $search = $request->get("search");
+        $sort = $request->get("sort");
+        if(strlen($sort)!=0){
+            $start=strrpos($sort,":");
+            $field=substr($sort, 0, $start);
+            $order=substr($sort, $start+1, strlen($sort));
+        } else {
+            $field="created_at";
+            $order="asc";
+        }
+        if(strlen($search)!=0){
+            $list = Customer::where('name', 'like', '%'.$search.'%')
+                    ->orWhere('type', 'like', '%'.$search.'%')
+                    ->orWhere('status', 'like', '%'.$search.'%')
+                    ->orWhere('contact_info', 'like', '%'.$search.'%')
+                    ->orderBy($field,$order)
+                    ->get();
+        } else {
+            $list = Customer::orderBy($field,$order)->get();
+        }
         return response()->json(["results"=>$list]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create new
+     *
+     * @bodyParam name String Company's name. Example: Alan D Rosenburg Cpa Pc
+     * @bodyParam vat String Company's organisation number. Example: X12345678
+     * @bodyParam type String Type. Example: Customer
+     * @bodyParam status String Status. Example: Active
+     * @bodyParam address_info String Stringified JSON Address information. Example: {"address": "85 Bridgewater St", "city": "Shard End Ward", "province": "West Midlands", "postal_code": "B34 7BP", "country": "United Kingdom"}
+     * @bodyParam contact_info String Stringified JSON Contact information. Example: {"phone1": "01689-253476", "phone2": "01376-851958", "email": "info@barajasbustamantearchl.co.uk", "web": "http://www.barajasbustamantearchl.co.uk"}
+     *
+     * @response {"id": 5, "name":"Alan D Rosenburg Cpa Pc","vat":"X12345678","type":"Customer","status":"Active","address_info":{"address": "85 Bridgewater St", "city": "Shard End Ward", "province": "West Midlands", "postal_code": "B34 7BP", "country": "United Kingdom"},"contact_info":{"phone1": "01689-253476", "phone2": "01376-851958", "email": "info@barajasbustamantearchl.co.uk", "web": "http://www.barajasbustamantearchl.co.uk"}}
+     *
+     * @response 401 {
+     *  "error": "Non authorized"
+     * }
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $json = json_decode($request->json);
-        $item = Customer::create($json->all());
+        $item = Customer::create($request->all());
         return response()->json(["result"=>$item]);
     }
 
     /**
-     * Display the specified resource.
+     * Get
+     *
+     * @urlParam customer required id of the Customer. Example: 5
+     *
+     * @response {"id": 5, "name":"Alan D Rosenburg Cpa Pc","vat":"X12345678","type":"Customer","status":"Active","address_info":{"address": "85 Bridgewater St", "city": "Shard End Ward", "province": "West Midlands", "postal_code": "B34 7BP", "country": "United Kingdom"},"contact_info":{"phone1": "01689-253476", "phone2": "01376-851958", "email": "info@barajasbustamantearchl.co.uk", "web": "http://www.barajasbustamantearchl.co.uk"}}
+     *
+     * @response 401 {
+     *  "error": "Non authorized"
+     * }
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -51,11 +96,31 @@ class CustomersController extends Controller
     public function show($id)
     {
         $item = Customer::find($id);
+        $item["contacts"]=$item->contacts()->get();
+        $item["todos"]=$item->todos()->get();
+        $item["quotes"]=$item->quotes()->get();
+        $item["orders"]=$item->orders()->get();
+        $item["invoices"]=$item->invoices()->get();
         return response()->json(["result"=>$item]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update
+     *
+     * @urlParam customer required id of the Customer. Example: 5
+     *
+     * @bodyParam name String Company's name. Example: Alan D Rosenburg Cpa Pc
+     * @bodyParam vat String Company's organisation number. Example: X12345678
+     * @bodyParam type String Type. Example: Customer
+     * @bodyParam status String Status. Example: Active
+     * @bodyParam address_info String Stringified JSON Address information. Example: {"address": "85 Bridgewater St", "city": "Shard End Ward", "province": "West Midlands", "postal_code": "B34 7BP", "country": "United Kingdom"}
+     * @bodyParam contact_info String Stringified JSON Contact information. Example: {"phone1": "01689-253476", "phone2": "01376-851958", "email": "info@barajasbustamantearchl.co.uk", "web": "http://www.barajasbustamantearchl.co.uk"}
+     *
+     * @response {"id": 5, "name":"Alan D Rosenburg Cpa Pc","vat":"X12345678","type":"Customer","status":"Active","address_info":{"address": "85 Bridgewater St", "city": "Shard End Ward", "province": "West Midlands", "postal_code": "B34 7BP", "country": "United Kingdom"},"contact_info":{"phone1": "01689-253476", "phone2": "01376-851958", "email": "info@barajasbustamantearchl.co.uk", "web": "http://www.barajasbustamantearchl.co.uk"}}
+     *
+     * @response 401 {
+     *  "error": "Non authorized"
+     * }
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -63,14 +128,21 @@ class CustomersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $json = json_decode($request->json);
         $item = Customer::find($id);
-        $item->update($json->all());
-        return response()->json(["result"=>$item]);
+        $item->update($request->all());
+        return show($id);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete
+     *
+     * @urlParam customer required id of the Customer. Example: 5
+     *
+     * @response {"success": true}
+     *
+     * @response 401 {
+     *  "error": "Non authorized"
+     * }
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -79,6 +151,6 @@ class CustomersController extends Controller
     {
         $item = Customer::find($id);
         $item->delete();
-        return response()->json(["result"=>"Success?"]);
+        return response()->json(["success"=>true]);
     }
 }

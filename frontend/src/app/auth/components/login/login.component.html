@@ -1,0 +1,42 @@
+<section class="hero is-fullheight is-dark is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+          <form [formGroup]="loginForm" (ngSubmit)="login()" class="box">
+            <figure class="has-text-centered" routerLink="/">
+              <img src="./assets/img/logo.png" alt="logo">
+            </figure>
+            <div class="field is-bottom-bordered">
+              <div class="control has-icons-left">
+                <input id="email" class="input" type="email" placeholder="{{ 'user.email' | translate }}" formControlName="email" required>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-envelope"></i>
+                </span>
+              </div>
+            </div>
+            <div class="field is-bottom-bordered">
+              <div class="control has-icons-left">
+                <input id="password" class="input" type="password" placeholder="{{ 'user.password' | translate }}" formControlName="password" required>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-lock"></i>
+                </span>
+              </div>
+            </div>
+            <div class="field has-text-danger has-text-centered" *ngIf="error">
+              <p>{{ 'user.loginerror' | translate }}</p>
+            </div>
+            <div class="field">
+              <button class="button is-fullwidth is-success is-rounded" type="submit" [disabled]="!loginForm.valid">
+                {{ 'user.login' | translate}}&nbsp;<i class="fas fa-sign-in-alt"></i>
+              </button>
+            </div>
+            <div class="field has-text-centered">
+              <p>{{ 'user.noaccount' | translate }} <a routerLink="/register" class="is-primary">{{ 'user.register' | translate }}</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

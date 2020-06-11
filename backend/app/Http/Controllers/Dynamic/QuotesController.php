@@ -5,7 +5,14 @@ namespace App\Http\Controllers\Dynamic;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Dynamic\Quote;
+use App\Dynamic\Preference;
+use PDF;
 
+/**
+ * @group Quotes
+ *
+ * @authenticated
+ */
 class QuotesController extends Controller
 {
     /**
@@ -19,31 +26,51 @@ class QuotesController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * List
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $list = Quote::all();
+        $search = $request->get("search");
+        $sort = $request->get("sort");
+        if(strlen($sort)!=0){
+            $start=strrpos($sort,":");
+            $field=substr($sort, 0, $start);
+            $order=substr($sort, $start+1, strlen($sort));
+        } else {
+            $field="created_at";
+            $order="asc";
+        }
+        if(strlen($search)!=0){
+            $list = Quote::where('code', 'like', '%'.$search.'%')
+                    ->orWhere('name', 'like', '%'.$search.'%')
+                    ->orWhere('date', 'like', '%'.$search.'%')
+                    ->orWhere('due_date', 'like', '%'.$search.'%')
+                    ->orWhere('status', 'like', '%'.$search.'%')
+                    ->orderBy($field,$order)
+                    ->get();
+        } else {
+            $list = Quote::orderBy($field,$order)->get();
+        }
         return response()->json(["results"=>$list]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create new
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $json = json_decode($request->json);
-        $item = Quote::create($json->all());
+        $item = Quote::create($request->all());
         return response()->json(["result"=>$item]);
     }
 
     /**
-     * Display the specified resource.
+     * Get
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -51,11 +78,12 @@ class QuotesController extends Controller
     public function show($id)
     {
         $item = Quote::find($id);
+        $item["lines"]=$item->lines()->get();
         return response()->json(["result"=>$item]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -63,14 +91,13 @@ class QuotesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $json = json_decode($request->json);
         $item = Quote::find($id);
-        $item->update($json->all());
-        return response()->json(["result"=>$item]);
+        $item->update($request->all());
+        return show($id);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -80,5 +107,13 @@ class QuotesController extends Controller
         $item = Quote::find($id);
         $item->delete();
         return response()->json(["result"=>"Success?"]);
+    }
+
+    public function savePDF($id){
+        $quote = Quote::find($id);
+        $preferences = Preference::find(1);
+        $data = array('quote' => $quote, 'preferences' => $preferences);
+        $pdf = PDF::loadView('pdf.quote', $data);
+        return $pdf->download('quote.pdf');
     }
 }

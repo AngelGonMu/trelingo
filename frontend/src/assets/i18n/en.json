@@ -1,0 +1,246 @@
+{
+	"alerts": {
+		"deleterecord": "Are you sure do you want to delete this record?",
+		"recnotfound": "Record not found",
+		"recsnotfound": "Records not found"
+	},
+	"buttons": {
+		"accept": "Accept",
+		"cancel": "Cancel",
+    "savechanges": "Save changes",
+    "newrecord": "New record",
+    "deleterecord": "Delete record",
+    "savepdf": "Save PDF",
+    "search": "Search"
+  },
+  "dashboard": {
+    "customers": "Active customers",
+    "quotes": "Open quotes",
+    "invoices": "Sales",
+    "todos": "Tasks for today",
+    "products": "Top 10 Products / Services",
+    "deals": "Top 10 Quotes",
+    "sales": "Top 10 Invoices",
+    "calendar": "To do's Calendar"
+  },
+	"modules": {
+		"categories": {
+			"value": "Name"
+		},
+		"characteristics": {
+			"description": "Description",
+			"name": "Name"
+		},
+		"contacts": {
+			"contact_info": {
+				"email": "Email",
+				"phone1": "Phone 1",
+				"phone2": "Phone 2",
+				"web": "Web"
+			},
+			"name": "Name",
+			"surname": "Surname",
+			"title": "Title",
+			"workplace": "Workplace"
+		},
+		"customers": {
+			"address_info": {
+				"address": "Address",
+				"city": "City",
+				"country": "Country",
+				"postal_code": "Zipcode",
+				"province": "Province"
+			},
+			"contact_info": {
+				"email": "Email",
+				"phone1": "Phone 1",
+				"phone2": "Phone 2",
+				"web": "Web"
+			},
+			"name": "Name",
+			"status": "Status",
+			"type": "Type",
+			"vat": "VAT"
+		},
+		"invoices": {
+			"address_info": {
+				"address": "Address",
+				"city": "City",
+				"country": "Country",
+				"postal_code": "Zipcode",
+				"province": "Province"
+			},
+			"code": "Code",
+			"contact_info": {
+				"email": "Email",
+				"phone1": "Phone 1",
+				"phone2": "Phone 2",
+				"web": "Web"
+			},
+			"currency": "Currency",
+			"date": "Start date",
+			"discount": "Discount",
+			"due_date": "Due date",
+			"name": "Name",
+			"status": "Status",
+			"tax": "Tax %",
+			"tdtype": "Tax/Discount type"
+		},
+		"lines": {
+			"description": "Description",
+			"discount": "Discount %",
+			"price_unit": "Price unit",
+			"product_id": "Product/Service",
+			"sort": "Sort",
+			"tax": "Tax %",
+			"units": "Units"
+		},
+		"orders": {
+			"address_info": {
+				"address": "Address",
+				"city": "City",
+				"country": "Country",
+				"postal_code": "Zipcode",
+				"province": "Province"
+			},
+			"code": "Code",
+			"contact_info": {
+				"email": "Email",
+				"phone1": "Phone 1",
+				"phone2": "Phone 2",
+				"web": "Web"
+			},
+			"currency": "Currency",
+			"date": "Start date",
+			"discount": "Discount",
+			"due_date": "Due date",
+			"name": "Name",
+			"status": "Status",
+			"tax": "Tax %",
+			"tdtype": "Tax/Discount type"
+		},
+		"payments": {
+			"date": "Date",
+			"description": "Description",
+			"due_date": "Due date",
+			"quantity": "Quantity"
+    },
+    "preferences": {
+			"address_info": {
+				"address": "Address",
+				"city": "City",
+				"country": "Country",
+				"postal_code": "Zipcode",
+				"province": "Province"
+			},
+			"contact_info": {
+				"email": "Email",
+				"phone1": "Phone 1",
+				"phone2": "Phone 2",
+				"web": "Web"
+			},
+			"company_name": "Company",
+			"custom_header": "Header",
+			"custom_footer": "Footer",
+			"vat": "VAT"
+		},
+		"products": {
+			"category": "Category",
+			"code": "Code",
+			"description": "Description",
+			"name": "Name",
+			"price_unit": "Price unit",
+			"subcategory": "Subcategory",
+			"unit": "Unit"
+		},
+		"quotes": {
+			"address_info": {
+				"address": "Address",
+				"city": "City",
+				"country": "Country",
+				"postal_code": "Zipcode",
+				"province": "Province"
+			},
+			"code": "Code",
+			"contact_info": {
+				"email": "Email",
+				"phone1": "Phone 1",
+				"phone2": "Phone 2",
+				"web": "Web"
+			},
+			"currency": "Currency",
+			"date": "Start date",
+			"discount": "Discount",
+			"due_date": "Due date",
+			"name": "Name",
+			"status": "Status",
+			"tax": "Tax %",
+			"tdtype": "Tax/Discount type"
+		},
+		"services": {
+			"category": "Category",
+			"code": "Code",
+			"description": "Description",
+			"name": "Name",
+			"price_unit": "Price unit",
+			"subcategory": "Subcategory",
+			"unit": "Unit"
+		},
+		"stock": {
+			"date": "Date",
+			"type": "Type",
+			"units": "Units"
+		},
+		"todos": {
+			"date": "Date",
+			"description": "Description",
+			"due_date": "Due date",
+			"type": "Type"
+		}
+	},
+	"navigation": {
+		"categories": "Categories",
+		"characteristics": "Characteristics",
+		"contacts": "Contacts",
+		"customers": "Customers",
+		"entities": "Entities",
+		"home": "Home",
+		"invoices": "Invoices",
+		"lines": "Lines",
+		"orders": "Orders",
+		"payments": "Payments",
+		"preferences": "Preferences",
+		"production": "Production",
+		"products": "Products",
+		"quotes": "Quotes",
+		"sales": "Sales",
+		"services": "Services",
+		"stock": "Stock",
+		"todos": "Tracking",
+		"users": "Users",
+		"vl": "Value Lists",
+		"documents": "Documents"
+	},
+	"user": {
+		"company": "Company",
+		"email": "Email",
+		"login": "Login",
+		"loginerror": "Incorrect user or password, please try again.",
+		"logout": "Logout",
+		"profile": "Profile",
+		"name": "Name",
+		"password": "Password",
+		"surname": "Surname",
+		"environment": "Environment",
+		"vat": "VAT",
+		"noaccount": "Don't have an account?",
+		"continue": "Continuar",
+		"register": "Sign up"
+	},
+  "info": {
+    "docs": "Docs",
+    "pricing": "Pricing",
+    "testimonials": "Testimonials",
+    "contactus": "Contact us"
+  }
+}

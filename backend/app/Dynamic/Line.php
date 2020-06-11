@@ -9,7 +9,7 @@ class Line extends Model
 {
     use SoftDeletes;
     protected $connection = "dynamic";
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -29,7 +29,7 @@ class Line extends Model
 
     public function product()
     {
-        return $this->hasOne('App\Dynamic\Product');
+        return $this->belongsTo('App\Dynamic\Product');
     }
 
 }
