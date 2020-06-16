@@ -223,7 +223,13 @@ export class QuotesComponent implements OnInit, OnDestroy {
       this.lists+=`"documentstatus": ${JSON.stringify(list)},`;
     });
     this._ds.list("products").subscribe(list => {
-      this.lists+=`"products": ${JSON.stringify(list)}}`;
+      this.lists+=`"products": ${JSON.stringify(list)},`;
+    });
+    this._ds.list("customers").subscribe(list => {
+      this.lists+=`"customers": ${JSON.stringify(list)},`;
+    });
+    this._ds.list("contacts").subscribe(list => {
+      this.lists+=`"contacts": ${JSON.stringify(list)}}`;
       this.lists=JSON.parse(this.lists);console.log(this.lists);
     });
   }

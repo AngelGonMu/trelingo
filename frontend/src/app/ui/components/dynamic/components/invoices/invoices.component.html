@@ -77,7 +77,19 @@
         <div class="field" *ngFor="let dfield of module.detailfields; index as it">
           <label class="label is-small">{{ 'modules.'+ component +'.'+dfield | translate }}</label>
           <div class="control">
-            <div *ngIf="isSelectElement(module.typefields[it])" class="select is-small has-text-black is-fullwidth">
+            <div *ngIf="isSelectElement(module.typefields[it]) && getListName(module.typefields[it]) == 'customers'" class="select is-small has-text-black is-fullwidth">
+              <select id="{{component}}_{{dfield}}_{{result.result.id}}" [value]="result.result[dfield]">
+                <option value="">-- Select an option --</option>
+                <option *ngFor="let opt of lists[getListName(module.typefields[it])].results" value="{{opt.id}}">{{opt.name}}</option>
+              </select>
+            </div>
+            <div *ngIf="isSelectElement(module.typefields[it]) && getListName(module.typefields[it]) == 'contacts'" class="select is-small has-text-black is-fullwidth">
+              <select id="{{component}}_{{dfield}}_{{result.result.id}}" [value]="result.result[dfield]">
+                <option value="">-- Select an option --</option>
+                <option *ngFor="let opt of lists[getListName(module.typefields[it])].results" value="{{opt.id}}">{{opt.name}} {{opt.surname}}</option>
+              </select>
+            </div>
+            <div *ngIf="isSelectElement(module.typefields[it]) && getListName(module.typefields[it]) != 'customers' && getListName(module.typefields[it]) != 'contacts'" class="select is-small has-text-black is-fullwidth">
               <select id="{{component}}_{{dfield}}_{{result.result.id}}" [value]="result.result[dfield]">
                 <option value="">-- Select an option --</option>
                 <option *ngFor="let opt of lists[getListName(module.typefields[it])].results" value="{{opt.value}}">{{opt.value}}</option>

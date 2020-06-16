@@ -78,6 +78,8 @@
 				"web": "Página web"
 			},
 			"currency": "Moneda",
+			"customer_id": "Cliente",
+			"contact_id": "Contacto",
 			"date": "Fecha de inicio",
 			"discount": "Descuento",
 			"due_date": "Fecha de vencimiento",
@@ -111,6 +113,8 @@
 				"web": "Página web"
 			},
 			"currency": "Moneda",
+			"customer_id": "Cliente",
+			"contact_id": "Contacto",
 			"date": "Fecha de inicio",
 			"discount": "Descuento",
 			"due_date": "Fecha de vencimiento",
@@ -169,6 +173,8 @@
 				"web": "Página web"
 			},
 			"currency": "Moneda",
+			"customer_id": "Cliente",
+			"contact_id": "Contacto",
 			"date": "Fecha de inicio",
 			"discount": "Descuento",
 			"due_date": "Fecha de vencimiento",

@@ -1,6 +1,6 @@
 export const config = {
-  docsUrl: 'http://localhost:8000/docs/',
-  apiUrl: 'http://localhost:8000/api/',
+  docsUrl: 'http://api.trelingo.test/docs/',
+  apiUrl: 'http://api.trelingo.test/api/',
   modules: {
     customers: {
       parent: 'entities',
@@ -33,22 +33,22 @@ export const config = {
     quotes: {
       parent: 'sales',
       listfields: ['code','name','date','due_date','status'],
-      typefields: ['text','text','date','date','select:documentstatus','select:currencies','select:taxdiscounttype','number','number','text','text','text','text','text','text','text','text','text'],
-      detailfields: ['code','name','date','due_date','status','currency','tdtype','tax','discount','address_info.address','address_info.city','address_info.postal_code','address_info.province','address_info.country','contact_info.phone1','contact_info.phone2','contact_info.email','contact_info.web'],
+      typefields: ['text','text','date','date','select:documentstatus','select:currencies','select:customers','select:contacts','select:taxdiscounttype','number','number','text','text','text','text','text','text','text','text','text'],
+      detailfields: ['code','name','date','due_date','status','currency','customer_id','contact_id','tdtype','tax','discount','address_info.address','address_info.city','address_info.postal_code','address_info.province','address_info.country','contact_info.phone1','contact_info.phone2','contact_info.email','contact_info.web'],
       tabs: ['lines']
     },
     orders: {
       parent: 'sales',
       listfields: ['code','name','date','due_date','status'],
-      typefields: ['text','text','date','date','select:documentstatus','select:currencies','select:taxdiscounttype','number','number','text','text','text','text','text','text','text','text','text'],
-      detailfields: ['code','name','date','due_date','status','currency','tdtype','tax','discount','address_info.address','address_info.city','address_info.postal_code','address_info.province','address_info.country','contact_info.phone1','contact_info.phone2','contact_info.email','contact_info.web'],
+      typefields: ['text','text','date','date','select:documentstatus','select:currencies','select:customers','select:contacts','select:taxdiscounttype','number','number','text','text','text','text','text','text','text','text','text'],
+      detailfields: ['code','name','date','due_date','status','currency','customer_id','contact_id','tdtype','tax','discount','address_info.address','address_info.city','address_info.postal_code','address_info.province','address_info.country','contact_info.phone1','contact_info.phone2','contact_info.email','contact_info.web'],
       tabs: ['lines']
     },
     invoices: {
       parent: 'sales',
       listfields: ['code','name','date','due_date','status'],
-      typefields: ['text','text','date','date','select:documentstatus','select:currencies','select:taxdiscounttype','number','number','text','text','text','text','text','text','text','text','text'],
-      detailfields: ['code','name','date','due_date','status','currency','tdtype','tax','discount','address_info.address','address_info.city','address_info.postal_code','address_info.province','address_info.country','contact_info.phone1','contact_info.phone2','contact_info.email','contact_info.web'],
+      typefields: ['text','text','date','date','select:documentstatus','select:currencies','select:customers','select:contacts','select:taxdiscounttype','number','number','text','text','text','text','text','text','text','text','text'],
+      detailfields: ['code','name','date','due_date','status','currency','customer_id','contact_id','tdtype','tax','discount','address_info.address','address_info.city','address_info.postal_code','address_info.province','address_info.country','contact_info.phone1','contact_info.phone2','contact_info.email','contact_info.web'],
       tabs: ['lines','payments']
     },
     todos: {
